@@ -2,3 +2,51 @@
     margin: 0;
     padding: 0;
 }
+
+:root {
+    --blue: #34656d;
+    --light: #ced4da;
+}
+
+body {
+    background-color: var(--blue);
+    color: var(--white);
+}
+a {
+    color: var(--pink);
+}
+a:hover {
+    color: var(--pink);
+}
+input {
+    margin: 0 5px !important;
+    padding: 0.2rem 0.75rem !important;
+    border: 2px solid var(--light) !important;
+    border-radius: 0 !important;
+}
+input:focus {
+    box-shadow: none !important;
+    border: 2px solid var(--pink) !important;
+}
+button {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#cgpa_form {
+    max-width: 20rem;
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid var(--light);
+    text-align: center !important;
+    text-align: center;
+}
+.cgpa_input_group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.cgpa_input_group > input {
+    width: 3.65rem;
+}
