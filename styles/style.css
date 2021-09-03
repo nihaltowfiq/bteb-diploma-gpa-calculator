@@ -25,7 +25,7 @@ input {
 }
 input:focus {
     box-shadow: none !important;
-    border: 2px solid var(--primary) !important;
+    border: 2px solid var(--purple) !important;
 }
 button {
     border-radius: 0 !important;
@@ -51,8 +51,14 @@ select {
     align-items: center;
     margin-bottom: 0.5rem;
 }
-#cgpa_form > label {
+#cgpa_form label {
     margin-bottom: 0;
+}
+#cgpa_form button {
+    color: white;
+    background-color: var(--purple);
+    border-color: var(--purple);
+    box-shadow: none !important;
 }
 .cgpa_input_group > input {
     width: 3.65rem;
@@ -70,5 +76,5 @@ select {
     outline: none;
 }
 .probidhan_select_group > select:focus {
-    border: 2px solid var(--primary) !important;
+    border: 2px solid var(--purple) !important;
 }

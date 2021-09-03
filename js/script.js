@@ -14,8 +14,10 @@ cgpaInputs.forEach((input, index) => {
         const gpa = validateGPA(value);
         if (gpa) {
             allSemesterGPA[index] = gpa;
-            document.querySelector(`.m${index}`).remove();
-            element.style.border = '1px solid var(--light) ';
+            if (document.querySelector(`.m${index}`)) {
+                document.querySelector(`.m${index}`).remove();
+                element.style.border = '1px solid var(--light) ';
+            }
         } else {
             if (!document.querySelector(`.m${index}`)) {
                 const message = document.createElement('p');
@@ -33,25 +35,38 @@ cgpaInputs.forEach((input, index) => {
 
 cgpaForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(probidhan.value);
-    console.log(allSemesterGPA, allSemesterGPA.length);
-    console.log(getResult(allSemesterGPA));
+    let isArrValid = null;
+    if (allSemesterGPA.length === 8) {
+        allSemesterGPA.find((el) => {
+            if (el === undefined) {
+                isArrValid = true;
+            } else {
+                isArrValid = false;
+            }
+        });
+    }
+
+    console.log(isArrValid);
+
+    // console.log('specialCase', typeof allSemesterGPA[0]);
 });
 
 const getResult = (gpa) => {
     const selectedProbidhan = probidhan.value;
-    let i = 0;
+
     let cGpa = 0;
     if (selectedProbidhan === '2010') {
-        cGpa = gpa
-            .map((gpa) => gpa * (importanceOfGPA_2010[i++] / 100))
-            .reduce((acc, value) => acc + value, 0);
+        cGpa = getCgpa(gpa, importanceOfGPA_2010);
     } else {
-        cGpa = gpa
-            .map((gpa) => gpa * (importanceOfGPA_2016[i++] / 100))
-            .reduce((acc, value) => acc + value, 0);
+        cGpa = getCgpa(gpa, importanceOfGPA_2016);
     }
     return cGpa;
+};
+const getCgpa = (gpa, formula) => {
+    let i = 0;
+    return gpa
+        .map((gpa) => gpa * (formula[i++] / 100))
+        .reduce((acc, value) => acc + value, 0);
 };
 
 const validateGPA = (value) => {
