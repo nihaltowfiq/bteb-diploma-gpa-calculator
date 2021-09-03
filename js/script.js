@@ -4,9 +4,8 @@ const cgpaInputs = document.querySelectorAll('.form-control');
 const formSubmitBtn = document.getElementById('#form_submit');
 
 let allSemesterGPA = [];
-let importanceOfGPA = [];
-
-probidhan.value = 2016;
+const importanceOfGPA_2010 = [5, 5, 5, 15, 15, 20, 25, 10];
+const importanceOfGPA_2016 = [5, 5, 5, 10, 15, 20, 25, 15];
 
 cgpaInputs.forEach((input, index) => {
     input.addEventListener('change', (e) => {
@@ -14,20 +13,34 @@ cgpaInputs.forEach((input, index) => {
         const gpa = validateGPA(value);
         if (gpa) {
             allSemesterGPA[index] = gpa;
+        } else {
+            console.log(e.target.parentElement);
         }
     });
 });
 
 cgpaForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    probidhan.value;
-
-    console.log(allSemesterGPA);
-    // console.log(input1st.value);
+    console.log(probidhan.value);
+    console.log(allSemesterGPA, allSemesterGPA.length);
+    console.log(getResult(allSemesterGPA));
 });
 
-console.log(allSemesterGPA.length);
+const getResult = (gpa) => {
+    const selectedProbidhan = probidhan.value;
+    let i = 0;
+    let cGpa = 0;
+    if (selectedProbidhan === '2010') {
+        cGpa = gpa
+            .map((gpa) => gpa * (importanceOfGPA_2010[i++] / 100))
+            .reduce((acc, value) => acc + value, 0);
+    } else {
+        cGpa = gpa
+            .map((gpa) => gpa * (importanceOfGPA_2016[i++] / 100))
+            .reduce((acc, value) => acc + value, 0);
+    }
+    return cGpa;
+};
 
 const validateGPA = (value) => {
     if (value >= 2 && value <= 4) {
