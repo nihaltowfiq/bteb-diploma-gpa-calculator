@@ -21,12 +21,11 @@ a:hover {
 input {
     margin: 0 5px !important;
     padding: 0.2rem 0.75rem !important;
-    border: 2px solid var(--light) !important;
     border-radius: 0 !important;
 }
 input:focus {
     box-shadow: none !important;
-    border: 2px solid var(--pink) !important;
+    border: 2px solid var(--primary) !important;
 }
 button {
     border-radius: 0 !important;
@@ -58,6 +57,12 @@ select {
 .cgpa_input_group > input {
     width: 3.65rem;
 }
+.invalid_message {
+    font-size: 14px;
+    text-align: right;
+    color: var(--danger);
+    margin: -0.5rem 1rem 0.25rem 0;
+}
 .probidhan_select_group {
     margin-bottom: 0.5rem;
 }
@@ -65,5 +70,5 @@ select {
     outline: none;
 }
 .probidhan_select_group > select:focus {
-    border: 2px solid var(--pink) !important;
+    border: 2px solid var(--primary) !important;
 }

@@ -9,12 +9,24 @@ const importanceOfGPA_2016 = [5, 5, 5, 10, 15, 20, 25, 15];
 
 cgpaInputs.forEach((input, index) => {
     input.addEventListener('change', (e) => {
-        const value = e.target.value.trim();
+        const element = e.target;
+        const value = element.value.trim();
         const gpa = validateGPA(value);
         if (gpa) {
             allSemesterGPA[index] = gpa;
+            document.querySelector(`.m${index}`).remove();
+            element.style.border = '1px solid var(--light) ';
         } else {
-            console.log(e.target.parentElement);
+            if (!document.querySelector(`.m${index}`)) {
+                const message = document.createElement('p');
+                message.classList = `text-danger invalid_message m${index}`;
+                message.innerText = 'Invalid';
+                element.parentElement.insertAdjacentElement(
+                    'afterend',
+                    message
+                );
+                element.style.border = '2px solid var(--danger)';
+            }
         }
     });
 });
