@@ -54,7 +54,7 @@ select {
 #cgpa_form label {
     margin-bottom: 0;
 }
-#cgpa_form button {
+#cgpa_form #form_submit {
     color: white;
     background-color: var(--purple);
     border-color: var(--purple);
@@ -77,4 +77,8 @@ select {
 }
 .probidhan_select_group > select:focus {
     border: 2px solid var(--purple) !important;
+}
+
+.extra_action {
+    display: none;
 }
